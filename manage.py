@@ -14,7 +14,7 @@ manager.add_command('server',Server(use_debugger=True))
 
 @manager.shell
 def  add_shell_context():
-    return {'db':db}
+    return {'db':db, 'User':User}
 
 @manager.command
 def test():
