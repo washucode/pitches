@@ -10,7 +10,7 @@ class test_userModel(unittest.TestCase):
 
     def test_setPassword(self):
         # to test if there is a password
-        self.assertTrue(self.new_user.secure_pass not None)
+        self.assertTrue(self.new_user.secure_pass is not None)
     def  test_check_password(self):
         
         self.assertTrue(self.new_user.check_password('mypassword'))

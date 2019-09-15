@@ -1,3 +1,4 @@
+
 from flask_script import Manager, Server
 from app import pitch_app,db
 from app.models import User
@@ -23,5 +24,5 @@ def test():
     unittest.TextTestRunner(verbosity=2).run(tests)
 
 
-if __name__=="__main__":
+if __name__== "__main__":
     manager.run()
