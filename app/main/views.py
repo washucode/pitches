@@ -1,6 +1,7 @@
 from flask import render_template,request,redirect,url_for
 from . import main
 from flask_login import login_required
+from ..models import User,Pitch
 
 @main.route('/')
 def index():
@@ -51,7 +52,18 @@ def profile(username):
 
     
     return render_template('profile.html', user = user)
+    
+@main.route('/<username>/update/pic', methods = ['POST'])
+def update_profile_pic(username):
+    user = User.query.filter_by(username = username).first()
 
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_pic_path = path
+        db.session.commit()
+
+    return redirect(url_for('main.profile', username = username))
 
 
 
