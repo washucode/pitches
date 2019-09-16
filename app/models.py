@@ -8,7 +8,7 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(255),nullable=False, unique=True)
     email = db.Column(db.String(20), nullable =False,unique=True)
     bio = db.Column(db.String(255))
-    profile_img = db.Column(db.String(20),nullable =False,default='default.jpg')
+    profile_img = db.Column(db.String(20))
     password = db.Column(db.String(60),nullable = False)
     pitches = db.relationship('Pitch', backref = 'user', lazy = 'dynamic')
     comments = db.relationship('Comment', backref = 'user', lazy = 'dynamic')
@@ -50,7 +50,7 @@ class Pitch(db.Model):
     date_posted = db.Column(db.DateTime, default = datetime.utcnow)    
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref = 'pitch', lazy = 'dynamic')
-    def save_comment(self):
+    def save_pitch(self):
         db.session.add(self)
         db.session.commit()
 
