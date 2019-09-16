@@ -23,13 +23,14 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">{{ current_user.username }}</li>
                 <li class="list-group-item">{{ current_user.email }}</li>
+            {%endif%}
                 {% if current_user.bio %}
                 <li class="list-group-item">{{ current_user.bio }}</li>
                 {% else %}
                 <li class="list-group-item">{{ current_user.username| capitalize }}</li>
                 {% endif %} 
                 {% if user == current_user %}
-                <a href="{{url_for('main.update_profile', username = user.username)}}">Edit Profile</a>
+                <a href="{{url_for('main.update_profile_pic', username = user.username)}}">Edit Profile</a>
                 {% endif %}
             </ul>
             <div class="card-body">
@@ -39,6 +40,8 @@
             </div>
 
         </div>
+        <div class="col-md-2"></div>
+
 
     </div>
 
