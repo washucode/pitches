@@ -2,7 +2,24 @@
 
 {% block content %}
 {{super()}}
-<p>Pickup</p>
+<div class="container-fluid" style="margin: 0% 2%">
+        <div class="row">
+          {{macro.showPitch(pickup)}}
+        </div>
+        <div class = "row">
+           <div class="col-md-4">
+    
+           </div>
+           <div class="col-md-4">
+                <a href="{{url_for('main.new_pitch')}}">
+                    <p>Add a New Pitch</p>
+                </a>
+                       
+           </div>
+           <div class="col-md-4"></div>
+            
+        </div>
+    </div>
 {% endblock %}
 
 

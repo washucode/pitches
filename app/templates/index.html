@@ -1,6 +1,11 @@
 {% extends 'base.html'%}
+{% import 'macros.html' as macro %} 
 
 {% block content %}
 {{super()}}
-<p>Home</p>
+<div class="container-fluid" style="margin: 0% 2%">
+    <div class="row">
+      {{macro.showPitch(general)}}
+    </div>
+</div>
 {% endblock %}
