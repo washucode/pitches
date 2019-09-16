@@ -30,6 +30,19 @@ def product():
 def pickup():
     return render_template('pickup.html')
 
+@main.route('/new_pitch', methods = ['GET','POST'])
+@login_required
+def new_pitch():
+    form = Pitch_Form()    
+
+    if pitch_form.validate_on_submit():
+        pitch = Pitch(title = pitch_form.title.data, category = pitch_form.category.data, content = pitch_form.pitch_content.data, author = pitch_form.author.data)
+
+        pitch.save_pitch()
+        
+        return redirect(url_for('main.index'))
+    
+    return render_template('new_pitch.html', form = form)  
 
 
 
