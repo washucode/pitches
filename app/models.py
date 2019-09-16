@@ -42,7 +42,7 @@ class Pitch(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(20))
-    pitch_content = db.Column(db.String)
+    content = db.Column(db.String)
     category = db.Column(db.String(20))
     author = db.Column(db.String(20))
     upvote = db.Column(db.Integer)
@@ -59,7 +59,7 @@ class Comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key = True)    
-    body = db.Column(db.String)          
+    content = db.Column(db.String)          
     date_posted = db.Column(db.DateTime, default = datetime.utcnow)    
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
