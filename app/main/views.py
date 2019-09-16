@@ -44,7 +44,13 @@ def new_pitch():
     
     return render_template('new_pitch.html', form = form)  
 
+@main.route('/<username>')
+@login_required
+def profile(username):
+    user = User.query.filter_by(username = username).first()
 
+    
+    return render_template('profile.html', user = user)
 
 
 
