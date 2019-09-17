@@ -10,9 +10,14 @@ def index():
     View root page function that returns the index page and its data
     """
  
-    general = Pitch.query.all()
     
-    return render_template('index.html',general=general)
+    
+    return render_template('index.html')
+@main.route('/all_pitches')
+def all_pitches():
+    general = Pitch.query.all()
+    return render_template('all_pitches.html',general=general)
+
 
 @main.route('/interview')
 def interview():

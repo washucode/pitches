@@ -6,9 +6,7 @@
     </button>
     <div class="collapse navbar-collapse navbar-right" id="navbarNav">
         <ul>
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
-            </li>
+            
             
         </ul>
         
@@ -60,7 +58,11 @@
         <li class="nav-item active">
                 <a class="nav-link" href="{{url_for('main.profile')}}">Account</a><span class="sr-only"></span></a>
         </li>
-        {%else%}          
+        {%else%}
+        <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+        </li>
+
         <li class="nav-item active">
             <a class="nav-link" href="{{url_for('auth.login')}}">Sign in<span class="sr-only"></span></a>
         </li>

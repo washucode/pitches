@@ -4,6 +4,7 @@ body{
     font-family: 'Raleway', sans-serif;
     background-image: url("../images/bg.jpg");
     background-size: cover;
+    color:white;
   
 
 }
@@ -28,4 +29,12 @@ li{
 
 a{
     color: black;
+}
+
+.login{
+    margin-top: 5%;
+}
+
+.login a {
+    color:white;
 }
