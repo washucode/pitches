@@ -3,9 +3,11 @@
 
 {% block content %}
 {{super()}}
-<div class="container-fluid" style="margin: 0% 2%">
-    <div class="row">
-      {{macro.showPitch(general)}}
-    </div>
+<div class="home text-center">
+  <h1>WELCOME TO PITCHES</h1>
+  <p>Create your pitch get a job or become famous:)</p>
+  
+  <a href="{{url_for('auth.login')}}" class= 'btn btn-dark'> START PITCHING</a>
+  
 </div>
 {% endblock %}

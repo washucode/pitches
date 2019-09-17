@@ -12,7 +12,7 @@
             {% if user.profile_img %}   
                 <img src="{{url_for('static', filename = user.profile_pic_path)}}" class="card-img-top" alt="...">
             {% else %}
-                <img src="{{url_for('static', filename = 'images/default.png')}}" alt="" class="card-img-top">
+                <img src="{{url_for('static', filename = 'images/default.jpg')}}" alt="" class="card-img-top">
 
             {% endif %} 
             {% if user == current_user %}
