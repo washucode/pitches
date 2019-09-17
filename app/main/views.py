@@ -92,6 +92,25 @@ def update_profile(username):
 
     return render_template('update_profile.html',form =form)
 
+@main.route('/comments/<int:pitch_id>/comment',methods=['POST','GET'])
+@login_required
+def comment(pitch_id):
+
+    form = CommentsForm()    
+    current_pitch = Pitch.query.filter_by(id = pitch_id).first()
+    if form.validate_on_submit():
+        comment = Comment(comment = form.comment.data,user = current_user,pitch = current_pitch)
+        db.session.add(new_comment)
+        db.session.commit()
+        
+        
+        return redirect(url_for('main.all_pitches'))
+    
+    return render_template('comments.html', comment_form = form)  
+  
+   
+   
+
 
 
 

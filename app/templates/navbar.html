@@ -38,10 +38,10 @@
             
                 
             <li>
-               <span class="nav-item"><a href="{{url_for('main.profile',username=current_user.username)}}"><img src="{{url_for('static', filename = current_user.profile_pic_path)}}" alt="" ></a></span>
+               <span class="nav-item"><a href="{{url_for('main.profile',username=current_user.username)}}"><img src="{{url_for('static', filename = current_user.profile_img)}}" alt="" style= "width:5%;height:7%;margin-right:50%;" ></a></span>
             </li>
 
-            <li class="nav-item navbar-nav active">
+            <li class="nav-item active">
                     <a class="nav-link" href="{{url_for('main.all_pitches')}}">Home <span class="sr-only"></span></a>
             </li>
             
@@ -54,14 +54,14 @@
                     <a class="nav-link" href="{{url_for('main.profile',username=current_user.username)}}">Account</a><span class="sr-only"></span></a>
             </li>
             {%else%}
-            <li class="nav-item navbar-nav active">
+            <li class="nav-item  active">
                 <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
             </li>
-            <li class="nav-item navbar-nav active">
+            <li class="nav-item  active">
                     <a class="nav-link" href="/all_pitches">Pitches<span class="sr-only"></span></a>
             </li>
 
-            <li class="nav-item navbar-nav active">
+            <li class="nav-item active">
                 <a class="nav-link" href="{{url_for('auth.login')}}">Sign in<span class="sr-only"></span></a>
             </li>
             {%endif%}

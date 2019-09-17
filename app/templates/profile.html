@@ -1,4 +1,8 @@
 {% extends 'base.html'%}
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+{% endblock %}
 
 
 {% block content %}
@@ -7,32 +11,47 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <div class="card profile-card">
+            <div class="card profile-card mt-2">
                     {% if user.profile_img %}
-                    <div class="card-img-block">
-                            <img class="card-img-top"  src="{{url_for('static', filename = user.profile_img)}}"  alt="profile image" style= "width:auto;height:50%;"   class="img-rounded img-responsive">
+                    <div class="card-img-block text-center">
+                            <img class="card-img-top"  src="{{url_for('static', filename = user.profile_img)}}"  alt="profile image" style= "width:auto;height:30%;"   class="img-rounded img-responsive text-center">
 
                     </div>
                     {%else%}
                     <div  class="card-img-block">
-                            <img class="card-img-top"  src="{{url_for('static', filename = 'images/default.jpg')}}" alt="" style= "width:auto;height:50%;"  class="img-rounded img-responsive" >
+                            <img class="card-img-top"  src="{{url_for('static', filename = 'images/default.jpg')}}" alt="" style= "width:auto;height:30%;"  class="img-rounded img-responsive text-center" >
                     </div>
                     {%endif%}
                     {% if user == current_user %}
-                    <form  action="{{url_for('main.update_profile_pic',username=user.username)}}" method="post" enctype = "multipart/form-data" class="mt-5 text-center">
-                        <h5>Change Profile Picture</h5>
-                        
-                        <input type="submit" >
+                    <form  action="{{url_for('main.update_profile_pic',username=user.username)}}" method="post" enctype = "multipart/form-data" class="mt-2 text-center">
+                        <h6><strong> Change Profile Picture</strong> </h6>
+                       
                         <input type="file" class="filestyle" data-icon="false" name="photo" required>
                         <input type="submit" >
                         
                     </form>
                     {% endif %}
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         {% if user == current_user %}
-                        <h5 class="card-title">{{current_user.username}}<small>{{ current_user.email }}</small></h5>
+                        <h5 class="card-title"><strong> {{current_user.username}}</strong><small> E-mail: <strong>{{ current_user.email }} </strong></small></h5>
                         {%endif%}
+
+                        {% if current_user.bio %}
+                        <div class="bio">
+                                <h6 class="card-title" > <strong>Your Bio</strong> </h6>
+                                <p class="card-text " >{{ current_user.bio }}</p>
+                        </div>
+                        
+                    
+                         {% else %}
+                         <p class="card-text">It is really important to add Your bio .It helps other users on pitches to know you more.</p>
+                        {% endif %}
+                        {% if user == current_user %}
+                            <a href="{{url_for('main.update_profile',username=user.username)}}">Edit profile</a>
+                        {% endif %}
                     </div>
+                     
+                    
 
 
             </div>
@@ -45,63 +64,6 @@
     </div>
 
 </div>
-<!-- <div class="container">
-    <div class="row">
-        
-        <div class="col-md-12">
-            
-            
-            {% if user.profile_img %}
-             <div class="col-md-2">
-                    <img src="{{url_for('static', filename = user.profile_pic_path)}}"  alt="profile image" style= "width:auto;height:50%;"   class="img-rounded img-responsive">
-             </div>  
-             
-               
-            {% else %}
-            <div class="col-md-2">
-                    <img src="{{url_for('static', filename = 'images/default.jpg')}}" alt="" style= "width:auto;height:50%;"  class="img-rounded img-responsive" >
-            </div>
 
-            {% if user == current_user %}
-            <form  action="{{url_for('main.update_profile_pic',username=user.username)}}" method="post" enctype = "multipart/form-data">
-
-            <input type="file"  name="photo" class="form-control" required>
-            <input type="submit">
-            </form>
-            {% endif %}
-                
-
-            {% endif %} 
-            {% if user == current_user %}
-            <div class="col-md-8">
-                <h5 class="textcenter">Your Bio</h5>
-                
-            
-                <ul >
-                    <li ><{{ current_user.username }}</li>
-                    <li > Email : {{ current_user.email }}</li>
-                {%endif%}
-                    {% if current_user.bio %}
-                    <li> Bio {{ current_user.bio }}</li>
-                    {% else %}
-                    <li>{{ current_user.username| capitalize }}</li>
-                    {% endif %} 
-                    {% if user == current_user %}
-                        <a href="{{url_for('main.update_profile',username=user.username)}}">Edit profile</a>
-                    {% endif %}
-                </ul>
-            
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-           
-            </div>
-
-        </div>
-        
-
-
-    </div>
-
-</div>-->
 {% endblock %} 
 
