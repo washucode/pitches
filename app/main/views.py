@@ -2,7 +2,8 @@ from flask import render_template,request,redirect,url_for
 from . import main
 from flask_login import login_required
 from ..models import User,Pitch
-from .forms import Pitch_Form, AddBio
+from .forms import Pitch_Form, Update_Profile
+from .. import db
 
 @main.route('/')
 def index():
@@ -61,16 +62,35 @@ def profile(username):
     return render_template('profile.html', user = user)
     
 @main.route('/<username>/update/pic', methods = ['POST'])
+@login_required
 def update_profile_pic(username):
     user = User.query.filter_by(username = username).first()
 
     if 'photo' in request.files:
         filename = photos.save(request.files['photo'])
         path = f'photos/{filename}'
-        user.profile_pic_path = path
+        user.profile_img = path
         db.session.commit()
 
     return redirect(url_for('main.profile', username = username))
+
+@main.route('/user/<username>/update',methods = ['GET','POST'])
+@login_required
+def update_profile(username):
+    user = User.query.filter_by(username = username).first()
+    if user is None:
+        abort(404)
+
+    form = Update_Profile()
+
+    if form.validate_on_submit():
+        user.bio = form.bio.data
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('main.profile',username=user.username))
+
+    return render_template('update_profile.html',form =form)
 
 
 
