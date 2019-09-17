@@ -1,9 +1,13 @@
 {% extends 'base.html'%}
 {% import 'macros.html' as macro %} 
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/home.css')}}">
+{% endblock %}
 
 {% block content %}
 {{super()}}
-<div class="home text-center">
+<div class="home text-center ">
   <h1>WELCOME TO PITCHES</h1>
   <p>Create your pitch get a job or become famous:)</p>
   

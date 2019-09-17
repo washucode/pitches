@@ -7,3 +7,25 @@ body{
   
 
 }
+.home{
+    color:white;
+    margin-top: 10%;
+}
+h1{
+    font-size: 60px;
+    font-weight: 900;
+}
+
+.home p{
+    font-weight: 900px;
+    font-style: italics;
+}
+
+li{
+    list-style: none;
+    
+}
+
+a{
+    color: black;
+}
