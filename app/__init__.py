@@ -1,13 +1,18 @@
 from flask import Flask
 from config import Config
+
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
+from flask_uploads import UploadSet,configure_uploads,IMAGES
+
 
 
 app = Flask(__name__)
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+photos = UploadSet('photos',IMAGES)
+
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -22,6 +27,8 @@ def  pitch_app():
     db.init_app(app)
     bootstrap.init_app(app)
 
+     # configure UploadSet
+    configure_uploads(app,photos)
     # registering main blueprint
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)

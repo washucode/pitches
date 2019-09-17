@@ -2,14 +2,16 @@ from datetime import datetime
 from flask_script import Manager, Server
 from app import pitch_app,db
 from app.models import User
+from  flask_migrate import Migrate, MigrateCommand
 
 
 
 app=pitch_app()
 
-
+migrate = Migrate(app,db)
 manager =  Manager(app)
 manager.add_command('server',Server(use_debugger=True))
+manager.add_command('db',MigrateCommand)
 
 
 @manager.shell

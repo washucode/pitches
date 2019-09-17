@@ -3,7 +3,49 @@
 
 {% block content %}
 {{super()}}
+
 <div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card profile-card">
+                    {% if user.profile_img %}
+                    <div class="card-img-block">
+                            <img class="card-img-top"  src="{{url_for('static', filename = user.profile_img)}}"  alt="profile image" style= "width:auto;height:50%;"   class="img-rounded img-responsive">
+
+                    </div>
+                    {%else%}
+                    <div  class="card-img-block">
+                            <img class="card-img-top"  src="{{url_for('static', filename = 'images/default.jpg')}}" alt="" style= "width:auto;height:50%;"  class="img-rounded img-responsive" >
+                    </div>
+                    {%endif%}
+                    {% if user == current_user %}
+                    <form  action="{{url_for('main.update_profile_pic',username=user.username)}}" method="post" enctype = "multipart/form-data" class="mt-5 text-center">
+                        <h5>Change Profile Picture</h5>
+                        
+                        <input type="submit" >
+                        <input type="file" class="filestyle" data-icon="false" name="photo" required>
+                        <input type="submit" >
+                        
+                    </form>
+                    {% endif %}
+                    <div class="card-body">
+                        {% if user == current_user %}
+                        <h5 class="card-title">{{current_user.username}}<small>{{ current_user.email }}</small></h5>
+                        {%endif%}
+                    </div>
+
+
+            </div>
+
+        </div>
+        <div class="col-md-8">
+
+        </div>
+
+    </div>
+
+</div>
+<!-- <div class="container">
     <div class="row">
         
         <div class="col-md-12">
@@ -19,6 +61,14 @@
             <div class="col-md-2">
                     <img src="{{url_for('static', filename = 'images/default.jpg')}}" alt="" style= "width:auto;height:50%;"  class="img-rounded img-responsive" >
             </div>
+
+            {% if user == current_user %}
+            <form  action="{{url_for('main.update_profile_pic',username=user.username)}}" method="post" enctype = "multipart/form-data">
+
+            <input type="file"  name="photo" class="form-control" required>
+            <input type="submit">
+            </form>
+            {% endif %}
                 
 
             {% endif %} 
@@ -52,6 +102,6 @@
 
     </div>
 
-</div>
-{% endblock %}
+</div>-->
+{% endblock %} 
 

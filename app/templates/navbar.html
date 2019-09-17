@@ -45,15 +45,13 @@
                     <a class="nav-link" href="{{url_for('main.all_pitches')}}">Home <span class="sr-only"></span></a>
             </li>
             
-            <li class="nav-item">
-                <a class="nav-link" href="{{url_for('main.profile',username=current_user.username)}}">Hi {{current_user.username}}</a>
-            </li> 
+            
             
             <li class="nav-item active">
                 <a class="nav-link" href="{{url_for('auth.signout')}}">Sign Out</a><span class="sr-only"></span></a>
             </li>
             <li class="nav-item active">
-                    <a class="nav-link" href="{{url_for('main.profile')}}">Account</a><span class="sr-only"></span></a>
+                    <a class="nav-link" href="{{url_for('main.profile',username=current_user.username)}}">Account</a><span class="sr-only"></span></a>
             </li>
             {%else%}
             <li class="nav-item navbar-nav active">

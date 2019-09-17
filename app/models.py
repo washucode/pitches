@@ -7,9 +7,9 @@ class User(UserMixin,db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key= True)
     username = db.Column(db.String(255),nullable=False, unique=True)
-    email = db.Column(db.String(20), nullable =False,unique=True)
+    email = db.Column(db.String(255), nullable =False,unique=True)
     bio = db.Column(db.String(255))
-    profile_img = db.Column(db.String(20))
+    profile_img = db.Column(db.String(255))
     password_u = db.Column(db.String(255),nullable = False)
     pitches = db.relationship('Pitch', backref = 'user', lazy = 'dynamic')
     comments = db.relationship('Comment', backref = 'user', lazy = 'dynamic')
@@ -42,10 +42,10 @@ class Pitch(db.Model):
     __tablename__ = 'pitches'
 
     id = db.Column(db.Integer, primary_key = True)
-    title = db.Column(db.String(20))
+    title = db.Column(db.String(40))
     content = db.Column(db.String)
-    category = db.Column(db.String(20))
-    author = db.Column(db.String(20))
+    category = db.Column(db.String(40))
+    author = db.Column(db.String(40))
     upvote = db.Column(db.Integer)
     downvote = db.Column(db.Integer)        
     date_posted = db.Column(db.DateTime, default = datetime.utcnow)    
