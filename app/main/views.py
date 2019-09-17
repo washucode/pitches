@@ -56,8 +56,10 @@ def new_pitch():
 @main.route('/<username>')
 @login_required
 def profile(username):
+    pitch = Pitch.query.filter_by(user_id= current_user.id).all()
     user = User.query.filter_by(username = username).first()
-
+    if user == None:
+        abort(404)
     
     return render_template('profile.html', user = user)
     
