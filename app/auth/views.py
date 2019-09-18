@@ -14,12 +14,15 @@ def signup():
     if form.validate_on_submit():
         user =  User(email = form.email.data, username = form.username.data,password = form.password.data)
         user.save_user()
-
-        msg = Message('Hello...Welcome to pitches.We are glad you joined us',sender=('esthertest@gmail.com'))
-        msg.add_recipient(user.email)
-        mail.send(msg)
+        try:
+            msg = Message('Hello...Welcome to pitches.We are glad you joined us',sender=('esthertest@gmail.com'))
+            msg.add_recipient(user.email)
+            mail.send(msg)
+        except Exception as e:
+            print('failed')
 
         return redirect(url_for('auth.login'))
+    
         title = "New Account"
     return render_template('sign_up.html',signup_form = form)
 
