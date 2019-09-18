@@ -6,8 +6,8 @@ class Config(object):
      TESTING = False
      CSRF_ENABLED = True
      SECRET_KEY = '435313ea80b5a872114356a1'
-    #  SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-     SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://esther:p@localhost/pitches'
+     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    #  SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://esther:p@localhost/pitches'
      UPLOADED_PHOTOS_DEST ='app/static/photos'
 
 class ProductionConfig(Config):
