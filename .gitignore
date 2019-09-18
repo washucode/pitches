@@ -3,3 +3,4 @@ virtual/
 .env
 env/
 .gitignore
+./start.sh
