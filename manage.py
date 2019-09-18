@@ -9,11 +9,12 @@ import os
 
 app=pitch_app('production')
 
+
 migrate = Migrate(app,db)
 manager =  Manager(app)
 manager.add_command('server',Server(use_debugger=True))
 manager.add_command('db',MigrateCommand)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+
 
 @manager.shell
 def  add_shell_context():
