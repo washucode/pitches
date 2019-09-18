@@ -1,6 +1,6 @@
 from flask import Flask
 from config import Config
-
+import os
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
