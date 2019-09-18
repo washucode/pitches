@@ -44,7 +44,10 @@
                         
                     
                          {% else %}
-                         <p class="card-text">It is really important to add Your bio .It helps other users on pitches to know you more.</p>
+                         <div class="bio">
+                                <h6 class="card-title" > <strong>Your Bio</strong> </h6>
+                                <p class="card-text">It is really important to add Your bio .It helps other users on pitches to know you more.</p>
+                         </div>       
                         {% endif %}
                         {% if user == current_user %}
                             <a href="{{url_for('main.update_profile',username=user.username)}}">Edit profile</a>

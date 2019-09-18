@@ -1,8 +1,8 @@
 from flask import render_template,request,redirect,url_for
 from . import main
 from flask_login import login_required,current_user
-from ..models import User,Pitch
-from .forms import Pitch_Form, Update_Profile
+from ..models import User,Pitch,Comment
+from .forms import Pitch_Form, Update_Profile,CommentsForm
 from .. import db,photos
 
 
@@ -19,27 +19,34 @@ def index():
 @main.route('/all_pitches')
 def all_pitches():
     general = Pitch.query.all()
+    
+    
+    
     return render_template('all_pitches.html',general=general)
 
 
 @main.route('/interview')
 def interview():
+    comment = Comment.query.all()
     interview= Pitch.query.filter_by(category = 'Interview Pitch').all()
-    return render_template('interview.html',interview=interview)
+    return render_template('interview.html',interview=interview,comment=comment)
 
 @main.route('/promotion')
 def promotion():
+    comment = Comment.query.all()
     promotion = Pitch.query.filter_by(category = 'Promotion Pitch').all()
-    return render_template('promotion.html',promotion=promotion)
+    return render_template('promotion.html',promotion=promotion,comment=comment)
 
 @main.route('/product')
 def product():
+    comment = Comment.query.all()
     product = Pitch.query.filter_by(category = 'Product Pitch').all()
-    return render_template('product.html',product=product)
+    return render_template('product.html',product=product,comment=comment)
 @main.route('/pickup')
 def pickup():
+    comment = Comment.query.all()
     pickup = Pitch.query.filter_by(category = 'Pickup Lines').all()
-    return render_template('pickup.html', pickup=pickup)
+    return render_template('pickup.html', pickup=pickup,comment=comment)
 
 @main.route('/new_pitch', methods = ['GET','POST'])
 @login_required
@@ -47,7 +54,7 @@ def new_pitch():
     form = Pitch_Form()    
 
     if form.validate_on_submit():
-        pitch = Pitch(title = form.title.data, category =form.category.data, content = form.content.data, author = form.author.data,user_id=current_user.id)
+        pitch = Pitch(title = form.title.data, category =form.category.data, content = form.content.data, author = form.author.data,upvote = 0,downvote = 0,user_id=current_user.id)
 
         pitch.save_pitch()
         
@@ -59,10 +66,10 @@ def new_pitch():
 @login_required
 def profile(username):
     pitch = Pitch.query.filter_by(user_id= current_user.id).all()
-    print(pitch)
+    
    
     user = User.query.filter_by(username = username).first()
-    print(pitch)
+   
     return render_template('profile.html', user = user, pitch = pitch)
     
 @main.route('/<username>/update/pic', methods = ['POST'])
@@ -101,16 +108,26 @@ def update_profile(username):
 def comment(pitch_id):
 
     form = CommentsForm()    
-    current_pitch = Pitch.query.filter_by(id = pitch_id).first()
+    pitch = Pitch.query.filter_by(id = pitch_id).first()
+    
+    user = current_user.username
     if form.validate_on_submit():
-        comment = Comment(comment = form.comment.data,user = current_user,pitch = current_pitch)
-        db.session.add(new_comment)
+        comment = Comment(content = form.comment.data,user_id = current_user.id,pitch = pitch)
+        db.session.add(comment)
         db.session.commit()
         
-        
-        return redirect(url_for('main.all_pitches'))
+   
+       
+      
+        # return redirect(url_for('main.all_pitches'))
     
-    return render_template('comments.html', comment_form = form)  
+    return render_template('comments.html', form = form,pitch=pitch,pitch_id=pitch_id,user=user,comments=comments)  
+
+
+
+       
+
+
   
    
    
