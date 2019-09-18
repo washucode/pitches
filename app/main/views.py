@@ -47,7 +47,7 @@ def new_pitch():
     form = Pitch_Form()    
 
     if form.validate_on_submit():
-        pitch = Pitch(title = form.title.data, category =form.category.data, content = form.content.data, author = form.author.data)
+        pitch = Pitch(title = form.title.data, category =form.category.data, content = form.content.data, author = form.author.data,user_id=current_user.id)
 
         pitch.save_pitch()
         
@@ -59,11 +59,11 @@ def new_pitch():
 @login_required
 def profile(username):
     pitch = Pitch.query.filter_by(user_id= current_user.id).all()
+    print(pitch)
+   
     user = User.query.filter_by(username = username).first()
-    if user == None:
-        abort(404)
-    
-    return render_template('profile.html', user = user)
+    print(pitch)
+    return render_template('profile.html', user = user, pitch = pitch)
     
 @main.route('/<username>/update/pic', methods = ['POST'])
 @login_required
