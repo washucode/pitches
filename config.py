@@ -11,9 +11,7 @@ class Config(object):
      UPLOADED_PHOTOS_DEST ='app/static/photos'
 
 class ProdConfig(Config):
-   
-
-
+     
 class DevConfig(Config):
     DEBUG = True
 
