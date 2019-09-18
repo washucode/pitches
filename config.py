@@ -10,14 +10,19 @@ class Config(object):
      
      UPLOADED_PHOTOS_DEST ='app/static/photos'
 
-class ProdConfig(Config):
-     pass
-     
-class DevConfig(Config):
+class ProductionConfig(Config):
+    DEBUG = False
+
+
+class StagingConfig(Config):
+    DEVELOPMENT = True
     DEBUG = True
 
-config_options = {
-'development':DevConfig,
-'production':ProdConfig
 
-}
+class DevelopmentConfig(Config):
+    DEVELOPMENT = True
+    DEBUG = True
+
+
+class TestingConfig(Config):
+    TESTING = True
