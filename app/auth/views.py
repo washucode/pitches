@@ -1,5 +1,6 @@
 from flask import render_template,redirect,url_for,flash,request
 from . import auth
+from .. import mail
 from flask_login import login_user,logout_user,login_required
 from .forms import LoginForm,SignUpForm
 from ..models import User,Pitch
@@ -13,7 +14,8 @@ def signup():
     if form.validate_on_submit():
         user =  User(email = form.email.data, username = form.username.data,password = form.password.data)
         user.save_user()
-        msg = Message('Hello...Welcome to pitches.We are glad you joined us',sender='esthertest@gmail.com')
+
+        msg = Message('Hello...Welcome to pitches.We are glad you joined us',sender=('esthertest@gmail.com'))
         msg.add_recipient(user.email)
         mail.send(msg)
 
