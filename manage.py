@@ -7,7 +7,7 @@ import os
 
 
 
-app=pitch_app()
+app=pitch_app('production')
 
 migrate = Migrate(app,db)
 manager =  Manager(app)
