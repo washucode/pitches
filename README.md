@@ -1,15 +1,18 @@
 # pitch
-- Esther Wachuka 
+
+###By Esther Wachuka 
+- An app that allows users to make 60 sec pitches in different categories
 
 ## installation
-```bash 
-git clone https://github.com/washucode/pitch
-cd pitch
-python3 -m venv virtual
-source virtual/bin/activate
-pip install -r requirements.txt
-python3 manage.py server
-```
+ 
+```git clone https://github.com/washucode/pitch```
+```cd pitch```
+```python3 -m venv virtual```
+```source virtual/bin/activate```
+```pip install -r requirements.txt```
+```export SECRET_KEY=<your-secret-key>```
+```python3 manage.py server```
+
 
 ### Requirements
 
@@ -22,12 +25,21 @@ and other modules found in requirements.txt
 
 #### Features(user story)
 ''' bash
-Visitors can view piches in all categories
-User can login and register
-Upon registering user gets an email
-User can upload profile photo and change or edit bio
-User can add a pitch
-User can comment on a pitch
+- [x] Visitors can view piches in all categories
+- [x] User can login and register
+- [x] Upon registering user gets an email
+- [x] User can upload profile photo and change or edit bio
+- [x] User can add a pitch
+- [x] User can comment on a pitch
 ,,,
 
-### Features (BDD)
+## Technologies Used
+1. Python Version 3.6
+2. Flask Framework
+3. Html
+4. Bootstrap
+5. Css
+
+### License
+*MIT*
+Copyright (c) 2019 **Esther Wachuka Ngaru **
