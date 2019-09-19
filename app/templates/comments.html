@@ -18,10 +18,12 @@
             {{wtf.quick_form(form)}}
 
             <h2 class = "text-center">Past Comments</h2>
-            {% if comment %}
-            {% for comments in comment %}
+            {% if comments %}
+            {% for comment in comments%}
+           
             
-             <p>{{comment.content}}<small>Posted by: {{user}}</small></p>
+             <p>{{comment}}<small>Posted by: {{user}}</small></p>
+             
             {% endfor %} 
             {% else %}
                 <p>No comments</p>

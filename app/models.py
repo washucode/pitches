@@ -68,6 +68,8 @@ class Comment(db.Model):
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
+
+    
         
         
 @login_manager.user_loader

@@ -33,3 +33,8 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
+
+
+config_options = {
+'test':TestingConfig
+}

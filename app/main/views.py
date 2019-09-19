@@ -110,18 +110,39 @@ def comment(pitch_id):
     form = CommentsForm()    
     pitch = Pitch.query.filter_by(id = pitch_id).first()
     
+
+  
     user = current_user.username
     if form.validate_on_submit():
-        comment = Comment(content = form.comment.data,user_id = current_user.id,pitch = pitch)
+        comment = Comment(content = form.comment.data,user_id = current_user.id,pitch_id = pitch.id)
         db.session.add(comment)
         db.session.commit()
+        
+
+    
+
         
    
        
       
-        # return redirect(url_for('main.all_pitches'))
+        return redirect(url_for('main.comment',pitch_id=pitch_id))
     
-    return render_template('comments.html', form = form,pitch=pitch,pitch_id=pitch_id,user=user,comments=comments)  
+    return render_template('comments.html', form = form,pitch=pitch,pitch_id=pitch_id,user=user)  
+
+
+# @main.route('/post_comment')
+
+# def post_comment(pitch_id):
+   
+#     comments = Comment.query.filter_by(pitch_id=pitch_id ).all()
+#     print('-----------------',comments)
+#     user = current_user.username
+
+
+#     return render_template('comments.html',comments=comments)
+
+
+
 
 
 
