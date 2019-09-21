@@ -17,7 +17,10 @@
 ```pip install -r requirements.txt```
 
 ```export SECRET_KEY=<your-secret-key>```
-```python3 manage.py server```
+
+```chmod a+x start.sh```
+
+```./start.sh```
 
 
 ### Requirements
